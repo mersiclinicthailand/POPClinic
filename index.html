@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bangchak Wellness Clinic | Package Pricing App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --green:#16a34a;--green2:#0b7f3a;--dark:#07542a;--lime:#a8d93a;--orange:#ff8a00;
+      --ink:#102015;--muted:#66756b;--line:#dce9df;--soft:#f4fbf6;--soft2:#eef8f1;--white:#fff;
+      --shadow:0 18px 48px rgba(7,84,42,.12);--radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:'Noto Sans Thai',sans-serif;color:var(--ink);background:linear-gradient(180deg,#f7fff8 0%,#fff 36%,#f8fbf9 100%);font-size:15px}
+    .topbar{position:sticky;top:0;z-index:80;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+    .nav{max-width:1360px;margin:auto;padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.1px}.brand img{width:42px;height:42px;border-radius:12px;object-fit:contain}.brand small{display:block;font-weight:600;color:var(--muted);font-size:12px;margin-top:-2px}.brand b{font-size:17px;color:var(--dark)}
+    .links{display:flex;gap:8px;flex-wrap:wrap}.links a{text-decoration:none;color:var(--ink);font-size:13px;font-weight:700;padding:8px 11px;border-radius:999px;background:#f2f8f4;border:1px solid transparent}.links a:hover{border-color:#cfe6d8;background:#fff;color:var(--green2)}
+    .hero{max-width:1360px;margin:auto;padding:34px 22px 22px;display:grid;grid-template-columns:1.12fr .88fr;gap:22px;align-items:stretch}
+    .hero-card{border-radius:34px;padding:38px;position:relative;overflow:hidden;color:#fff;background:linear-gradient(135deg,var(--dark),var(--green),var(--lime));box-shadow:var(--shadow);min-height:330px}
+    .hero-card:before{content:"";position:absolute;right:-100px;top:-100px;width:310px;height:310px;border-radius:50%;background:rgba(255,255,255,.17)}
+    .hero-card:after{content:"";position:absolute;right:46px;bottom:-70px;width:190px;height:190px;border-radius:50%;background:rgba(255,138,0,.78)}
+    .hero-card>*{position:relative;z-index:1}.eyebrow{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);padding:8px 13px;border-radius:999px;font-size:13px;font-weight:800}.hero h1{font-size:46px;line-height:1.1;margin:18px 0 10px;font-weight:900}.hero p{font-size:17px;line-height:1.8;margin:0 0 22px;color:rgba(255,255,255,.92);max-width:780px}.orange{color:var(--orange)}
+    .cta{display:flex;gap:11px;flex-wrap:wrap}.btn{border:0;border-radius:999px;padding:12px 17px;font-family:inherit;font-weight:900;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;line-height:1}.btn-primary{background:#fff;color:var(--dark)}.btn-dark{background:#0f2b1e;color:#fff}.btn-ghost{background:#eef8f1;color:var(--dark);border:1px solid #d5eadc}
+    .summary{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.metric{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:0 12px 34px rgba(16,53,34,.07)}.metric .num{font-size:28px;font-weight:900;color:var(--dark);line-height:1}.metric .label{color:var(--muted);font-size:13px;margin-top:7px;line-height:1.5}.metric.accent{background:linear-gradient(135deg,#fff,#f2fae5);border-color:#d9edb4}.metric.orange-card{background:linear-gradient(135deg,#fff,#fff4e7);border-color:#ffddb5}
+    .section{max-width:1360px;margin:0 auto;padding:24px 22px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:16px}.section h2{font-size:29px;margin:0;font-weight:900;letter-spacing:.1px}.section .sub{color:var(--muted);margin:6px 0 0;line-height:1.65}.tabs-wrap{max-width:1360px;margin:0 auto;padding:8px 22px 4px}.tabs{display:flex;gap:10px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer;font-family:inherit;box-shadow:0 8px 18px rgba(16,53,34,.04)}.tab.active{background:linear-gradient(135deg,var(--dark),var(--green));color:#fff;border-color:var(--dark)}
+    .category{display:none}.category.active{display:block}.panel{background:#fff;border:1px solid var(--line);border-radius:28px;padding:20px;box-shadow:0 12px 34px rgba(16,53,34,.07)}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 12px 30px rgba(16,53,34,.06);position:relative;overflow:hidden;min-width:0}.card.highlight{border-color:rgba(255,138,0,.45);box-shadow:0 18px 42px rgba(255,138,0,.13)}.badge{display:inline-flex;align-items:center;gap:6px;background:#eaf7ee;color:var(--dark);padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900}.badge.orange-b{background:#fff1df;color:#c75d00}.badge.dark-b{background:#0f2b1e;color:#fff}.price{font-size:32px;font-weight:900;margin:8px 0;color:var(--dark);line-height:1.15}.price small{font-size:14px;color:var(--muted);font-weight:700}.card h3{margin:10px 0 4px;font-size:21px;font-weight:900}.card p{color:var(--muted);line-height:1.65;margin:0 0 12px}.features{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}.features li{display:flex;gap:8px;align-items:flex-start;color:#24362b;font-size:14px;line-height:1.45}.features li:before{content:"✓";color:var(--green);font-weight:900;flex:0 0 auto}.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;background:#f6faf7;border:1px solid var(--line);font-size:12px;color:var(--muted);font-weight:800;white-space:nowrap}
+    .table-wrap{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 30px rgba(16,53,34,.06);overflow:hidden;width:100%}.table-title{padding:14px 16px;background:linear-gradient(135deg,#f0faf3,#fff);border-bottom:1px solid var(--line);font-weight:900;color:var(--dark)}
+    table{width:100%;border-collapse:collapse;table-layout:fixed}th,td{padding:12px 12px;border-bottom:1px solid var(--line);vertical-align:middle;line-height:1.45;word-break:normal;overflow-wrap:anywhere}th{background:#f0faf3;font-weight:900;color:var(--dark);font-size:14px}td{font-size:14px}.price-cell{text-align:center;font-weight:900;color:#10251a;white-space:nowrap}.program-row td:first-child{font-weight:800}.center{text-align:center}.check{font-size:20px;color:var(--dark);font-weight:900}.dash{color:#9aa6a0}.benefit-matrix td{text-align:center}.benefit-matrix td:first-child{text-align:left;font-weight:800}.wide-first th:first-child,.wide-first td:first-child{width:34%}.iv-price-table th:not(:first-child),.iv-price-table td:not(:first-child){text-align:center}.iv-price-table td:first-child{width:36%}.compact th,.compact td{padding:10px 9px;font-size:13.5px}.smalltable th,.smalltable td{font-size:13px;padding:10px 8px}
+    .program-cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:18px}.program-mini{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 10px 24px rgba(16,53,34,.05);display:flex;flex-direction:column;min-height:150px}.program-mini .idx{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#e8f6ec;color:var(--dark);font-weight:900;margin-bottom:8px}.program-mini h3{font-size:15px;margin:0 0 5px;color:var(--dark);line-height:1.25}.program-mini p{font-size:12.5px;color:var(--muted);margin:0 0 10px;line-height:1.45}.program-mini .start{margin-top:auto;font-weight:900;color:var(--green2)}
+    .calc{background:linear-gradient(135deg,#07542a,#10a34a);color:#fff;border-radius:30px;padding:26px;box-shadow:var(--shadow)}.calc h2{color:#fff}.calc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.calc input,.calc select{width:100%;padding:13px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.13);color:#fff;font-family:inherit;font-size:16px}.calc option{color:#111}.calc label{font-size:13px;font-weight:800;color:rgba(255,255,255,.85)}.result{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:16px}.result b{font-size:25px}.sim-table{width:100%;border-collapse:separate;border-spacing:0;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.24);border-radius:22px;overflow:hidden;margin-top:16px}.sim-table th,.sim-table td{border-bottom:1px solid rgba(255,255,255,.20);color:#fff;text-align:center;padding:13px 12px}.sim-table th{background:rgba(255,255,255,.16);font-weight:900;color:#fff}.sim-table td:first-child,.sim-table th:first-child{text-align:left}.sim-table input{background:#fff!important;color:#102015!important;border:0!important;text-align:center;font-weight:900;padding:10px 12px!important;border-radius:12px!important}.sim-revenue{font-weight:900;font-size:18px;color:#fff}.sim-total{display:flex;justify-content:space-between;gap:14px;align-items:center;margin-top:16px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);border-radius:22px;padding:18px 20px}.sim-total .total-label{font-weight:900;font-size:18px}.sim-total .total-value{font-size:30px;font-weight:900}.footer{padding:34px 22px;text-align:center;color:var(--muted)}
+    @media(max-width:1160px){.hero{grid-template-columns:1fr}.program-cards{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.grid3{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.links{display:none}.hero h1{font-size:38px}.compact th,.compact td{font-size:12.5px;padding:9px 6px}}
+    @media(max-width:760px){body{font-size:14px}.summary{grid-template-columns:1fr 1fr}.hero-card{padding:28px}.hero h1{font-size:31px}.section h2{font-size:24px}.grid,.grid3,.program-cards{grid-template-columns:1fr}.calc-grid{grid-template-columns:1fr}.nav{align-items:flex-start}.brand b{font-size:15px}.section{padding:20px 14px}.hero{padding:24px 14px}.tabs-wrap{padding:8px 14px}.panel{padding:14px;border-radius:22px}.table-wrap{border-radius:18px}th,td{font-size:12px;padding:9px 5px}.smalltable th,.smalltable td,.compact th,.compact td{font-size:11.5px;padding:8px 4px}.price-cell{white-space:normal}.iv-price-table td:first-child{width:38%}.benefit-matrix td:first-child{width:32%}}
+    @media(max-width:520px){.summary{grid-template-columns:1fr}.hero p{font-size:15px}.price{font-size:26px}th,td{font-size:11px;padding:8px 4px}.section-head{display:block}.pill{margin-top:8px}.tabs{gap:7px}.tab{padding:8px 10px;font-size:12px}}
+    @media print{.topbar,.tabs-wrap,.cta,.calc{display:none}.section{page-break-inside:avoid}.category{display:block!important}.card,.table-wrap,.panel{box-shadow:none}.hero{display:none}body{background:#fff}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="nav">
+      <div class="brand"><img src="opengraph.jpeg" onerror="this.style.display='none'"/><span><b>Bangchak Wellness Clinic</b><small>Package Pricing Web App Prototype</small></span></div>
+      <nav class="links"><a href="#iv">IV Drip</a><a href="#weight">Weight</a><a href="#body">Emsculpt</a><a href="#skin">Skin Glow</a><a href="#facial">Face Detox</a><a href="#botox">Botox</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">Bangchak Wellness & Beauty Clinic</div>
+        <h1>เมนูแพ็กเกจสุขภาพและความงาม <span class="orange">แบบขายจริง</span></h1>
+        <p>ออกแบบให้ลูกค้าเลือกง่าย เห็นราคาเต็ม เห็นราคาเฉลี่ย และสิทธิประโยชน์ชัดเจน เหมาะสำหรับใช้เป็นเมนูหน้าร้านและเปิดนำเสนอผู้บริหาร</p>
+        <div class="cta"><a class="btn btn-primary" href="#iv">ดูแพ็กเกจทั้งหมด</a><button class="btn btn-dark" onclick="window.print()">Export / Print PDF</button></div>
+      </div>
+      <div class="summary">
+        <div class="metric accent"><div class="num">6</div><div class="label">หมวดโปรแกรมหลัก</div></div>
+        <div class="metric"><div class="num">690</div><div class="label">ราคาเริ่มต้น IV Drip</div></div>
+        <div class="metric orange-card"><div class="num">12</div><div class="label">แพ็กเกจสมาชิกสูงสุด</div></div>
+        <div class="metric"><div class="num">Green CI</div><div class="label">โทนบางจาก เขียว / ไลม์ / ส้ม</div></div>
+      </div>
+    </section>
+
+    <div class="tabs-wrap">
+      <div class="tabs">
+        <button class="tab active" data-tab="iv">1 IV Drip</button>
+        <button class="tab" data-tab="weight">2 Wegovy / Mounjaro</button>
+        <button class="tab" data-tab="body">3 Emsculpt</button>
+        <button class="tab" data-tab="skin">4 Skin Glow Injection</button>
+        <button class="tab" data-tab="facial">5 Face Detox</button>
+        <button class="tab" data-tab="botox">6 Botox</button>
+      </div>
+    </div>
+
+    <section id="iv" class="section category active">
+      <div class="section-head"><div><h2>IV Drip Program</h2><p class="sub">เลือกตามปัญหาที่ต้องการดูแล แล้วเลือกระดับความเข้มข้นของสูตร</p></div><span class="pill">Hero Product</span></div>
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="iv-price-table compact wide-first">
+            <thead><tr><th>ปัญหาที่ต้องการดูแล</th><th>Starter<br>(100ml)</th><th>Standard<br>(100ml)</th><th>Premium<br>(250ml)</th><th>Elite<br>(250ml)</th></tr></thead>
+            <tbody id="ivRows"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <br>
+      <div class="section-head"><div><h2>โปรแกรมสมาชิก IV Drip</h2><p class="sub">แบ่งตาม Tier เพื่อให้ลูกค้าเข้าใจง่าย และเลือกแพ็กได้ตามงบประมาณ</p></div><span class="pill">6 ครั้ง / 12 ครั้ง</span></div>
+      <div class="table-wrap">
+        <table class="compact">
+          <thead><tr><th>Membership</th><th>ใช้ได้กับ Tier</th><th>ราคา 6 ครั้ง</th><th>เฉลี่ย/ครั้ง</th><th>ราคา 12 ครั้ง</th><th>เฉลี่ย/ครั้ง</th></tr></thead>
+          <tbody>
+            <tr><td>Starter Pass</td><td class="center">Starter</td><td class="price-cell">3,600</td><td class="price-cell">600</td><td class="price-cell">6,900</td><td class="price-cell">575</td></tr>
+            <tr><td>Standard Pass</td><td class="center">Standard</td><td class="price-cell">5,100</td><td class="price-cell">850</td><td class="price-cell">9,600</td><td class="price-cell">800</td></tr>
+            <tr><td>Premium Pass</td><td class="center">Premium</td><td class="price-cell">7,500</td><td class="price-cell">1,250</td><td class="price-cell">13,900</td><td class="price-cell">1,158</td></tr>
+            <tr><td>Elite Pass</td><td class="center">Elite</td><td class="price-cell">12,900</td><td class="price-cell">2,150</td><td class="price-cell">23,900</td><td class="price-cell">1,992</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <br>
+      <div class="section-head"><div><h2>สิทธิประโยชน์ Membership</h2><p class="sub">แสดงครบทุกระดับสมาชิก เพื่อใช้ประกอบการปิดแพ็กเกจ 12 ครั้ง</p></div><span class="pill">Member Benefits</span></div>
+      <div class="table-wrap">
+        <table class="benefit-matrix smalltable wide-first">
+          <thead><tr><th>สิทธิประโยชน์ Membership</th><th>Starter Pass<br>12 ครั้ง</th><th>Standard Pass<br>12 ครั้ง</th><th>Premium Pass<br>12 ครั้ง</th><th>Elite Pass<br>12 ครั้ง</th></tr></thead>
+          <tbody>
+            <tr><td>จองคิวล่วงหน้า</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+            <tr><td>เครื่องดื่มสุขภาพฟรีทุก Visit</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+            <tr><td>ส่วนลดอาหารเสริม</td><td>10%</td><td>10%</td><td>15%</td><td>20%</td></tr>
+            <tr><td>สะสมแต้มพิเศษ</td><td>x2</td><td>x2</td><td>x3</td><td>x4</td></tr>
+            <tr><td>InBody ฟรี</td><td class="dash">-</td><td>ทุก 2 เดือน</td><td>ทุกเดือน</td><td>ทุกเดือน</td></tr>
+            <tr><td>Birthday Gift</td><td class="dash">-</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+            <tr><td>Upgrade สูตรฟรี</td><td class="dash">-</td><td>ปีละ 1 ครั้ง</td><td>ปีละ 2 ครั้ง</td><td>ปีละ 4 ครั้ง</td></tr>
+            <tr><td>ส่วนลดโปรแกรมฉีดโบท็อกซ์</td><td class="dash">-</td><td>500 บาท</td><td>1,000 บาท</td><td>1,500 บาท</td></tr>
+            <tr><td>ส่วนลดปากกาลดน้ำหนัก</td><td class="dash">-</td><td>500 บาท</td><td>1,000 บาท</td><td>1,500 บาท</td></tr>
+            <tr><td>ส่วนลด Emsculpt / Body Program</td><td class="dash">-</td><td>5%</td><td>7%</td><td>10%</td></tr>
+            <tr><td>พาเพื่อนทดลอง Drip ฟรี</td><td class="dash">-</td><td class="dash">-</td><td>1 คน/ปี</td><td>2 คน/ปี</td></tr>
+            <tr><td>Personal Wellness Consultant</td><td class="dash">-</td><td class="dash">-</td><td class="dash">-</td><td class="check">✓</td></tr>
+            <tr><td>Annual Wellness Check</td><td class="dash">-</td><td class="dash">-</td><td class="dash">-</td><td class="check">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="weight" class="section category">
+      <div class="section-head"><div><h2>Weight Management Program</h2><p class="sub">Wegovy และ Mounjaro ขายเป็นโปรแกรมรายสัปดาห์ พร้อม InBody และการติดตามผลโดยทีมคลินิก</p></div><span class="pill">Medical Weight Program</span></div>
+      <div class="two">
+        <div class="table-wrap"><div class="table-title">WEGOVY PROGRAM</div><table class="compact"><thead><tr><th>แพ็กเกจ</th><th>ราคา</th><th>เฉลี่ย/สัปดาห์</th></tr></thead><tbody>
+          <tr><td>Trial 1 สัปดาห์</td><td class="price-cell">1,490</td><td class="price-cell">1,490</td></tr><tr><td>Starter 4 สัปดาห์</td><td class="price-cell">5,490</td><td class="price-cell">1,373</td></tr><tr><td>Control 8 สัปดาห์</td><td class="price-cell">10,490</td><td class="price-cell">1,311</td></tr><tr><td>Transformation 12 สัปดาห์</td><td class="price-cell">14,900</td><td class="price-cell">1,242</td></tr>
+        </tbody></table></div>
+        <div class="table-wrap"><div class="table-title">MOUNJARO PROGRAM</div><table class="compact"><thead><tr><th>แพ็กเกจ</th><th>ราคา</th><th>เฉลี่ย/สัปดาห์</th></tr></thead><tbody>
+          <tr><td>Trial 1 สัปดาห์</td><td class="price-cell">2,490</td><td class="price-cell">2,490</td></tr><tr><td>Starter 4 สัปดาห์</td><td class="price-cell">8,990</td><td class="price-cell">2,248</td></tr><tr><td>Control 8 สัปดาห์</td><td class="price-cell">16,990</td><td class="price-cell">2,124</td></tr><tr><td>Transformation 12 สัปดาห์</td><td class="price-cell">23,900</td><td class="price-cell">1,992</td></tr>
+        </tbody></table></div>
+      </div><br>
+      <div class="table-wrap"><table class="benefit-matrix compact"><thead><tr><th>สิทธิประโยชน์</th><th>1 สัปดาห์</th><th>4 สัปดาห์</th><th>8 สัปดาห์</th><th>12 สัปดาห์</th></tr></thead><tbody>
+        <tr><td>พบแพทย์</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr><tr><td>InBody</td><td>1</td><td>2</td><td>4</td><td>ทุกสัปดาห์</td></tr><tr><td>ติดตามผลโดย CS</td><td class="dash">-</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr><tr><td>ส่วนลด IV Drip</td><td class="dash">-</td><td>5%</td><td>10%</td><td>25%</td></tr><tr><td>ส่วนลด Body Program</td><td class="dash">-</td><td class="dash">-</td><td>15%</td><td>20%</td></tr><tr><td>ส่วนลด Supplement</td><td class="dash">-</td><td>10%</td><td>10%</td><td>15%</td></tr><tr><td>IV Weight Support ฟรี</td><td class="dash">-</td><td class="dash">-</td><td class="dash">-</td><td>1 ครั้ง</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="body" class="section category">
+      <div class="section-head"><div><h2>Body Emsculpt Program</h2><p class="sub">โปรแกรมกระชับสัดส่วนและดูแลรูปร่าง เหมาะสำหรับ Cross-sell จาก Weight Program</p></div><span class="pill">High Margin</span></div>
+      <div class="table-wrap"><table class="compact"><thead><tr><th>Program</th><th>Normal Price</th><th>Membership</th><th>เฉลี่ย Member/ครั้ง</th></tr></thead><tbody>
+        <tr><td>Trial</td><td class="price-cell">1,990</td><td class="price-cell">1,490</td><td class="price-cell">1,490</td></tr><tr><td>4 ครั้ง</td><td class="price-cell">5,900</td><td class="price-cell">4,900</td><td class="price-cell">1,225</td></tr><tr><td>8 ครั้ง</td><td class="price-cell">10,900</td><td class="price-cell">8,900</td><td class="price-cell">1,113</td></tr><tr><td>12 ครั้ง</td><td class="price-cell">14,900</td><td class="price-cell">11,900</td><td class="price-cell">992</td></tr>
+      </tbody></table></div>
+      <div class="grid3" style="margin-top:16px">
+        <div class="card"><span class="badge">Trial</span><h3>เริ่มทดลอง</h3><div class="price">1,490 <small>บาท/ครั้ง สมาชิก</small></div><p>เหมาะสำหรับลูกค้าใหม่ที่ต้องการทดลองโปรแกรม</p></div>
+        <div class="card highlight"><span class="badge orange-b">แนะนำ</span><h3>8 ครั้ง</h3><div class="price">8,900 <small>บาท สมาชิก</small></div><p>เฉลี่ย 1,113 บาท/ครั้ง คุ้มและปิดการขายง่าย</p></div>
+        <div class="card"><span class="badge dark-b">Best Value</span><h3>12 ครั้ง</h3><div class="price">11,900 <small>บาท สมาชิก</small></div><p>เฉลี่ยเพียง 992 บาท/ครั้ง เหมาะกับลูกค้า Weight Program</p></div>
+      </div>
+    </section>
+
+    <section id="skin" class="section category">
+      <div class="section-head"><div><h2>Skin Glow Injection Program</h2><p class="sub">โปรแกรมดูแลผิวให้ดูสดใส สุขภาพดี ราคาเริ่มต้น 1,990 บาท</p></div><span class="pill">Premium Beauty</span></div>
+      <div class="grid">
+        <div class="card"><span class="badge">Trial</span><h3>1 ครั้ง</h3><div class="price">1,990 <small>บาท</small></div><p>เหมาะสำหรับทดลองดูแลผิว</p></div>
+        <div class="card"><span class="badge">Glow Pack</span><h3>4 ครั้ง</h3><div class="price">6,990 <small>บาท</small></div><p>เฉลี่ย 1,748 บาท/ครั้ง</p></div>
+        <div class="card highlight"><span class="badge orange-b">Glow Plus</span><h3>8 ครั้ง</h3><div class="price">12,900 <small>บาท</small></div><p>เฉลี่ย 1,613 บาท/ครั้ง • แนะนำ</p></div>
+        <div class="card"><span class="badge">Glow Premium</span><h3>12 ครั้ง</h3><div class="price">17,900 <small>บาท</small></div><p>เฉลี่ย 1,492 บาท/ครั้ง</p></div>
+      </div>
+      <br>
+      <div class="table-wrap"><table class="compact"><thead><tr><th>Package</th><th>จำนวนครั้ง</th><th>ราคา</th><th>เฉลี่ย/ครั้ง</th></tr></thead><tbody>
+        <tr><td>Trial</td><td class="center">1 ครั้ง</td><td class="price-cell">1,990</td><td class="price-cell">1,990</td></tr><tr><td>Glow Pack</td><td class="center">4 ครั้ง</td><td class="price-cell">6,990</td><td class="price-cell">1,748</td></tr><tr><td>Glow Plus</td><td class="center">8 ครั้ง</td><td class="price-cell">12,900</td><td class="price-cell">1,613</td></tr><tr><td>Glow Premium</td><td class="center">12 ครั้ง</td><td class="price-cell">17,900</td><td class="price-cell">1,492</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="facial" class="section category">
+      <div class="section-head"><div><h2>Face Detox Program</h2><p class="sub">นวดหน้าด้วยเครื่อง Derma Gold แก้ไขผิวหน้าโทรม 30 นาที</p></div><span class="pill">Add-on Product</span></div>
+      <div class="table-wrap"><table class="compact"><thead><tr><th>Program</th><th>Normal Price</th><th>Membership</th><th>เฉลี่ย Member/ครั้ง</th></tr></thead><tbody>
+        <tr><td>Trial</td><td class="price-cell">990</td><td class="price-cell">890</td><td class="price-cell">890</td></tr><tr><td>4 ครั้ง</td><td class="price-cell">3,960</td><td class="price-cell">3,490</td><td class="price-cell">873</td></tr><tr><td>8 ครั้ง</td><td class="price-cell">7,920</td><td class="price-cell">6,490</td><td class="price-cell">811</td></tr><tr><td>12 ครั้ง</td><td class="price-cell">11,880</td><td class="price-cell">8,900</td><td class="price-cell">742</td></tr>
+      </tbody></table></div>
+      <div class="grid3" style="margin-top:16px">
+        <div class="card"><span class="badge">เริ่มต้น</span><h3>Trial</h3><div class="price">990 <small>บาท</small></div><p>ทรีทเม้นท์ 30 นาที เหมาะกับลูกค้าที่ต้องการดูแลผิวหน้าเร็ว</p></div>
+        <div class="card highlight"><span class="badge orange-b">Hero Pack</span><h3>8 ครั้ง</h3><div class="price">6,490 <small>บาท สมาชิก</small></div><p>เฉลี่ย 811 บาท/ครั้ง ใช้เป็น Add-on คู่กับ IV Drip ได้ดี</p></div>
+        <div class="card"><span class="badge dark-b">Best Value</span><h3>12 ครั้ง</h3><div class="price">8,900 <small>บาท สมาชิก</small></div><p>เฉลี่ย 742 บาท/ครั้ง ช่วยเพิ่มการกลับมาใช้บริการซ้ำ</p></div>
+      </div>
+    </section>
+
+    <section id="botox" class="section category">
+      <div class="section-head"><div><h2>Botox Program</h2><p class="sub">ใช้โบท็อกเกาหลี 1 ยี่ห้อ บริหารง่าย เหมาะเป็น Product เสริมของคลินิก</p></div><span class="pill">Injectable</span></div>
+      <div class="two">
+        <div class="card highlight"><span class="badge orange-b">Botox 50U</span><h3>สำหรับเริ่มต้น</h3><div class="price">3,990 <small>บาท</small></div><ul class="features"><li>พบแพทย์ประเมิน</li><li>เหมาะกับลูกค้าที่เริ่มดูแลริ้วรอยหรือกรอบหน้า</li></ul></div>
+        <div class="card"><span class="badge dark-b">Botox 100U</span><h3>ฟรี Face Detox 1 ครั้ง</h3><div class="price">6,990 <small>บาท</small></div><ul class="features"><li>พบแพทย์ประเมิน</li><li>เพิ่มมูลค่าด้วยทรีทเมนท์หน้า</li></ul></div>
+      </div>
+      <br>
+      <div class="table-wrap"><table class="compact"><thead><tr><th>Program</th><th>ราคา</th></tr></thead><tbody><tr><td>Botox 50U</td><td class="price-cell">3,990</td></tr><tr><td>Botox 100U ฟรี Face Detox 1 ครั้ง</td><td class="price-cell">6,990</td></tr></tbody></table></div>
+    </section>
+
+    <section class="section">
+      <div class="program-cards">
+        <div class="program-mini"><div class="idx">1</div><h3>IV Drip</h3><p>เติมวิตามิน ฟื้นฟูร่างกาย</p><div class="start">เริ่ม 690.-</div></div>
+        <div class="program-mini"><div class="idx">2</div><h3>Wegovy / Mounjaro</h3><p>โปรแกรมดูแลน้ำหนัก</p><div class="start">เริ่ม 1,490.-</div></div>
+        <div class="program-mini"><div class="idx">3</div><h3>Emsculpt</h3><p>กระชับสัดส่วน</p><div class="start">เริ่ม 1,490.-</div></div>
+        <div class="program-mini"><div class="idx">4</div><h3>Skin Glow</h3><p>ดูแลผิวให้ดูสดใส</p><div class="start">เริ่ม 1,990.-</div></div>
+        <div class="program-mini"><div class="idx">5</div><h3>Face Detox</h3><p>Derma Gold 30 นาที</p><div class="start">เริ่ม 990.-</div></div>
+        <div class="program-mini"><div class="idx">6</div><h3>Botox</h3><p>โบท็อกเกาหลี</p><div class="start">เริ่ม 3,990.-</div></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="calc">
+        <h2>Quick Revenue Simulator</h2>
+        <p>กรอกจำนวน Visit ของแต่ละโปรแกรมพร้อมกัน เพื่อดูประมาณการรายได้แยกตามโปรแกรมและรายได้รวมทั้งหมด</p>
+        <table class="sim-table">
+          <thead>
+            <tr><th>โปรแกรม</th><th>Avg Price</th><th>จำนวน Visit</th><th>ประมาณการรายได้</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>IV Drip</td><td>2,250</td><td><input class="visit-input" data-price="2250" type="number" value="300" min="0"></td><td class="sim-revenue">675,000 บาท</td></tr>
+            <tr><td>Wegovy / Mounjaro</td><td>4,750</td><td><input class="visit-input" data-price="4750" type="number" value="0" min="0"></td><td class="sim-revenue">0 บาท</td></tr>
+            <tr><td>Emsculpt</td><td>4,250</td><td><input class="visit-input" data-price="4250" type="number" value="0" min="0"></td><td class="sim-revenue">0 บาท</td></tr>
+            <tr><td>Glow Facial Treatment</td><td>2,750</td><td><input class="visit-input" data-price="2750" type="number" value="0" min="0"></td><td class="sim-revenue">0 บาท</td></tr>
+            <tr><td>Skin Glow Injection</td><td>4,950</td><td><input class="visit-input" data-price="4950" type="number" value="0" min="0"></td><td class="sim-revenue">0 บาท</td></tr>
+            <tr><td>Botox</td><td>2,400</td><td><input class="visit-input" data-price="2400" type="number" value="0" min="0"></td><td class="sim-revenue">0 บาท</td></tr>
+          </tbody>
+        </table>
+        <div class="sim-total">
+          <div class="total-label">รวมประมาณการรายได้ทั้งหมด</div>
+          <div class="total-value" id="totalRev">675,000 บาท</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">Bangchak Wellness Clinic Pricing Web App Prototype • สำหรับนำเสนอและทดสอบโมเดลแพ็กเกจ</footer>
+  <script>
+    const ivProblems = ['เติมพลังระหว่างวัน (Energy)','ผิวกระจ่างใส (Bright Skin)','เสริมภูมิคุ้มกัน (Immunity)','ฟื้นฟูร่างกาย (Recovery)','พักผ่อนน้อย / นอนดึก (Sleep Recovery)','เครียดสะสม / สมองล้า (Stress Balance)','ดูแลสุขภาพตับ (Liver Care)','ควบคุมน้ำหนัก (Weight Support)','ฟื้นฟูหลังออกกำลังกาย (Sport Recovery)','ดูแลสุขภาพวัย 35+ (Healthy Aging)'];
+    document.getElementById('ivRows').innerHTML = ivProblems.map(p=>`<tr class="program-row"><td>${p}</td><td class="price-cell">690</td><td class="price-cell">990</td><td class="price-cell">1,490</td><td class="price-cell">2,490</td></tr>`).join('');
+    document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const id=btn.dataset.tab;document.querySelectorAll('.category').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');history.replaceState(null,'','#'+id);window.scrollTo({top:document.querySelector('.tabs-wrap').offsetTop-70,behavior:'smooth'});}));
+    function fmt(n){return new Intl.NumberFormat('th-TH').format(Math.round(n))+' บาท'}
+    function calc(){let total=0;document.querySelectorAll('.visit-input').forEach(input=>{const price=+input.dataset.price;const visits=+input.value||0;const rev=price*visits;total+=rev;input.closest('tr').querySelector('.sim-revenue').textContent=fmt(rev)});document.getElementById('totalRev').textContent=fmt(total)}
+    document.querySelectorAll('.visit-input').forEach(input=>input.addEventListener('input',calc));calc();
+  </script>
+</body>
+</html>
